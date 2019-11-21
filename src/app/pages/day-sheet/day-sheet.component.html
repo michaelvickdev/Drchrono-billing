@@ -1,0 +1,220 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-tabset (changeTab)="selectTab($event)">
+        <nb-tab tabTitle="Day Sheet" disabled class="title-label">
+        </nb-tab>
+        <nb-tab tabTitle="Default" active>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <input type="input" nbInput [nbDatepicker]="frommodel" class="form-control form-control-sm" [(ngModel)]="fromDate">
+                      <nb-datepicker #frommodel format="MM/dd/yyyy"></nb-datepicker>
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="input" nbInput [nbDatepicker]="tomodel" class="form-control form-control-sm" [(ngModel)]="toDate">
+                      <nb-datepicker #tomodel format="MM/dd/yyyy"></nb-datepicker>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-1" style="line-height: 2.5em; font-size: 13px;">
+                  (Max 31 days)
+                </div> 
+                <div class="col-md-1">
+                  <input type="text" nbInput placeholder="Patient" class="form-control form-control-sm">
+                </div>
+                <div class="col-md-2">
+                  <nb-select size="small" [(selected)]="selectedItem1" style="width: 100%;">
+                    <nb-option value="1">All Offices</nb-option>
+                    <nb-option value="2">Primary Office</nb-option>
+                  </nb-select>
+                </div>
+                <div class="col-md-2">
+                  <nb-select size="small" [(selected)]="selectedItem2" style="width: 100%;">
+                    <nb-option value="1">All Rooms</nb-option>
+                  </nb-select>
+                </div>
+                <div class="col-md-2">
+                  <nb-select size="small" [(selected)]="selectedItem3" style="width: 100%;">
+                    <nb-option value="1">All Reasons</nb-option>
+                    <nb-option value="2">-2:Bad Debt Writeoff</nb-option>
+                    <nb-option value="3">-4:Bad Debt Writeoff</nb-option>
+                    <nb-option value="4">0:Discount</nb-option>
+                  </nb-select>
+                </div>
+              </div>
+            </div>
+            <hr style="width: 100%;">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div id="combo1" style="float: left;">
+                        <label style="font-size: 13px; margin-right: 10px;">Display Credits & Adjmt by</label>
+                        <nb-select size="small" style="vertical-align: middle; width: 150px; margin-right: 10px;" [(selected)]="selectedItem4">
+                          <nb-option value="1">Posted Date</nb-option>
+                          <nb-option value="2">Check Date</nb-option>                            
+                          <nb-option value="3">Deposit Date</nb-option>                            
+                        </nb-select>                      
+                      </div> 
+                      <div id="combo2" style="float: left;">
+                        <label style="font-size: 13px; margin-right: 10px;">Filter by</label>
+                        <nb-select size="small" style="vertical-align: middle; width: 150px; margin-right: 10px;" [(selected)]="selectedItem7">
+                          <nb-option value="1">Posted Date</nb-option>
+                          <nb-option value="2">Payment Date</nb-option>                       
+                        </nb-select>                      
+                      </div>
+                      <div id="combo3" style="float: left;">
+                        <label style="font-size: 13px; margin-right: 10px;" >Group Patient Payments by</label>
+                        <nb-select size="small" style="vertical-align: middle; width: 150px; margin-right: 10px;" [(selected)]="selectedItem8">
+                          <nb-option value="1">Posted Date</nb-option>
+                          <nb-option value="2">Payment Date</nb-option>                            
+                          <nb-option value="3">Creator</nb-option>                            
+                          <nb-option value="3">Method</nb-option>                            
+                        </nb-select>
+                      </div>
+                      <div id="combo4" style="float: left;">
+                        <label style="font-size: 13px; margin-right: 10px;" >Display Charges by</label>
+                        <nb-select size="small" style="vertical-align: middle; width: 150px; margin-right: 10px;" [(selected)]="selectedItem5">
+                          <nb-option value="1">Posted Date</nb-option>
+                          <nb-option value="2">Date of Service</nb-option>                            
+                        </nb-select>
+                      </div>
+                      <div id="combo5" style="float: left;">
+                        <label style="font-size: 13px; margin-right: 10px;">Include Moved Cash</label>
+                        <nb-select size="small" style="vertical-align: middle; width: 150px; margin-right: 10px;" [(selected)]="selectedItem6" >
+                          <nb-option value="1">Yes</nb-option>
+                          <nb-option value="2">No</nb-option>                            
+                        </nb-select>
+                      </div>          
+                    </div>                                                  
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="row">
+                    <div class="col-md-6 offset-md-6">
+                      <button type="button" class="btn btn-primary btn-sm"><nb-icon icon="sync" style="margin-right: 5px;"></nb-icon>Update</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>       
+          </div>
+        </nb-tab>
+        <nb-tab tabTitle="Reimbursement Analysis">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <input type="input" nbInput [nbDatepicker]="frommodel" class="form-control form-control-sm" [(ngModel)]="fromDate">
+                      <nb-datepicker #frommodel format="MM/dd/yyyy"></nb-datepicker>
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="input" nbInput [nbDatepicker]="tomodel" class="form-control form-control-sm" [(ngModel)]="toDate">
+                      <nb-datepicker #tomodel format="MM/dd/yyyy"></nb-datepicker>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-1" style="line-height: 2.5em; font-size: 13px;">
+                  (Max 31 days)
+                </div> 
+                <div class="col-md-1">
+                  <input type="text" nbInput placeholder="Patient" class="form-control form-control-sm">
+                </div>
+                <div class="col-md-2">
+                  <nb-select size="small" [(selected)]="selectedItem1" style="width: 100%;">
+                    <nb-option value="1">All Offices</nb-option>
+                    <nb-option value="2">Primary Office</nb-option>
+                  </nb-select>
+                </div>
+                <div class="col-md-2">
+                  <nb-select size="small" [(selected)]="selectedItem2" style="width: 100%;">
+                    <nb-option value="1">All Rooms</nb-option>
+                  </nb-select>
+                </div>
+                <div class="col-md-2">
+                  <nb-select size="small" [(selected)]="selectedItem3" style="width: 100%;">
+                    <nb-option value="1">All Reasons</nb-option>
+                    <nb-option value="2">-2:Bad Debt Writeoff</nb-option>
+                    <nb-option value="3">-4:Bad Debt Writeoff</nb-option>
+                    <nb-option value="4">0:Discount</nb-option>
+                  </nb-select>
+                </div>
+              </div>
+            </div>
+            <hr style="width: 100%;">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="row">
+                    <div class="col-md-12">                      
+                      <label style="font-size: 13px; margin-right: 10px;">Display Charges by</label>
+                      <nb-select size="small" style="vertical-align: middle; width: 150px; margin-right: 10px;" [(selected)]="selectedItem5">
+                        <nb-option value="1">Posted Date</nb-option>
+                        <nb-option value="2">Date of Service</nb-option>                            
+                      </nb-select>                      
+                    </div>                                                  
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="row">
+                    <div class="col-md-6 offset-md-6">
+                      <button type="button" class="btn btn-primary btn-sm"><nb-icon icon="sync" style="margin-right: 5px;"></nb-icon>Update</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>       
+          </div>
+        </nb-tab>
+      </nb-tabset>
+    </nb-card>
+  </div>
+  <div class="col-md-12">
+    <nb-tabset (changeTab)="selectTab($event)">
+      <nb-tab tabTitle="Grand Totals">
+        <div class="row">
+          <div class="col-md-3">
+            <nb-card>
+              <nb-card-header>$0.00</nb-card-header>
+              <nb-card-body>DEBIT</nb-card-body>
+            </nb-card>
+          </div>
+          <div class="col-md-3">
+            <nb-card>
+              <nb-card-header>$0.00</nb-card-header>
+              <nb-card-body>CREDIT</nb-card-body>
+            </nb-card>
+          </div>
+          <div class="col-md-3">
+            <nb-card>
+              <nb-card-header>$0.00</nb-card-header>
+              <nb-card-body>ADJUSTMENT</nb-card-body>
+            </nb-card>
+          </div>
+          <div class="col-md-3">
+            <nb-card>
+              <nb-card-header>$0.00</nb-card-header>
+              <nb-card-body>PATIENT PAYMENT</nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+      </nb-tab>
+      <nb-tab tabTitle="Credits & Adjustments">
+        <ng2-smart-table [settings]="settings" [source]="source" style="display: flex;"></ng2-smart-table>
+      </nb-tab>
+      <nb-tab tabTitle="Patient Payment">
+        <ng2-smart-table [settings]="settings" [source]="source" style="display: flex;"></ng2-smart-table>  
+      </nb-tab>
+      <nb-tab tabTitle="Charges">
+        <ng2-smart-table [settings]="settings" [source]="source" style="display: flex;"></ng2-smart-table>  
+      </nb-tab>
+    </nb-tabset>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+@import '../@theme/styles/themes';
+
+@include nb-install-component() {
+  ::ng-deep nb-menu .menu-item {
+    a {
+      &:hover { background-color: #5bb75b; color: white;}
+      &:focus { background-color: #5bb75b; color: white;}
+      &:active { background-color: #5bb75b; color: white;}
+    } 
+  }
+
+  ::ng-deep nb-menu .ng-star-inserted.active {
+    background-color: #5bb75b; 
+    color: white;
+  }
+
+  ::ng-deep router-outlet + * {
+    display: block;
+    animation: fade 1s;
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  }
+}

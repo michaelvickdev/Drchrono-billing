@@ -1,0 +1,203 @@
+<div class="row">
+    <div class="col-md-12">
+      <nb-card>
+        <nb-tabset (changeTab)="selectTab($event)">
+          <nb-tab tabTitle="Insurance Payer Fee Schedule" disabled class="title-label">
+          </nb-tab>
+          <nb-tab tabTitle="Summary" active>
+            <div class="row">
+              <strong style="margin: auto 0;">Aging AR By</strong>
+              <div class="col-md-2" style="margin: auto 0;">
+                <nb-select size="small" [(selected)]="selectedItem1" style="width: 100%;">
+                  <nb-option value="1">First Billed</nb-option>
+                  <nb-option value="2">Last Biiled</nb-option>
+                  <nb-option value="3">Service</nb-option>
+                </nb-select>
+              </div>
+              <strong style="margin: auto 0;">Group By</strong>
+              <div class="col-md-2" style="margin: auto 0;">
+                <nb-select size="small" [(selected)]="selectedItem2" style="width: 100%;">
+                  <nb-option value="1">30 days</nb-option>
+                  <nb-option value="2">Month</nb-option>
+                  <nb-option value="3">Quarter</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <hr style="width: 100%;">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="row">
+                  <div class="col-md-6" style="padding-left: 0px;">
+                    <input nbInput [nbDatepicker]="frommodel1" class="form-control form-control-sm" placeholder="From">
+                    <nb-datepicker #frommodel1 format="MM/dd/yyyy"></nb-datepicker>
+                  </div>                        
+                  <div class="col-md-6" style="padding-left: 0px;">
+                    <input nbInput [nbDatepicker]="tomodel1" class="form-control form-control-sm" placeholder="To">
+                    <nb-datepicker #tomodel1 format="MM/dd/yyyy"></nb-datepicker>
+                  </div>
+                </div>
+              </div>
+              <strong style="margin: auto 0;">or</strong>
+              <div class="col-md-2">
+                <nb-select size="small" [(selected)]="selectedItem3" style="width: 100%;">
+                  <nb-option value="1">Date Range</nb-option>
+                  <nb-option value="2">0 - 30 days</nb-option>
+                  <nb-option value="3">31 - 60 days</nb-option>
+                  <nb-option value="4">61 - 90 days</nb-option>
+                  <nb-option value="5">91 - 120 days</nb-option>
+                  <nb-option value="6">121+ days</nb-option>
+                </nb-select>
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-success btn-sm" style="width: 100%; text-align: center;"><nb-icon icon="save" style="margin-right: 5px;"></nb-icon>Export</button>
+              </div>
+              <div class="col-md-1 offset-md-4">
+                <button class="btn btn-primary btn-sm" style="width: 100%; text-align: center;"><nb-icon icon="sync" style="margin-right: 5px;"></nb-icon>Update</button>
+              </div>
+            </div>
+          </nb-tab>
+          <nb-tab tabTitle="Insurance">
+            <div class="row">
+              <strong style="margin: auto 0;">Aging AR By</strong>
+              <div class="col-md-2" style="margin: auto 0;">
+                <nb-select size="small" [(selected)]="selectedItem1" style="width: 100%;">
+                  <nb-option value="1">First Billed</nb-option>
+                  <nb-option value="2">Last Biiled</nb-option>
+                  <nb-option value="3">Service</nb-option>
+                </nb-select>
+              </div>
+              <strong style="margin: auto 0;">Group By</strong>
+              <div class="col-md-2" style="margin: auto 0;">
+                <nb-select size="small" [(selected)]="selectedItem2" style="width: 100%;">
+                  <nb-option value="1">30 days</nb-option>
+                  <nb-option value="2">Month</nb-option>
+                  <nb-option value="3">Quarter</nb-option>
+                </nb-select>
+              </div>
+              <strong style="margin: auto 0;">Submission Status</strong>
+              <div class="col-md-2" style="margin: auto 0;">
+                <nb-select size="small" [(selected)]="selectedItem2" style="width: 100%;">
+                  <nb-option value="1">All</nb-option>
+                  <nb-option value="2">Submitted</nb-option>
+                  <nb-option value="3">Not Submitted</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <hr style="width: 100%;">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="row">
+                  <div class="col-md-6" style="padding-left: 0px;">
+                    <input nbInput [nbDatepicker]="frommodel2" class="form-control form-control-sm" placeholder="From">
+                    <nb-datepicker #frommodel2 format="MM/dd/yyyy"></nb-datepicker>
+                  </div>                        
+                  <div class="col-md-6" style="padding-left: 0px;">
+                    <input nbInput [nbDatepicker]="tomodel2" class="form-control form-control-sm" placeholder="To">
+                    <nb-datepicker #tomodel2 format="MM/dd/yyyy"></nb-datepicker>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1" style="padding-right: 0px; padding-left: 0px;">
+                <input type="text" nbInput placeholder="Payer Id" class="form-control form-control-sm">
+              </div>
+              <div class="col-md-2" style="padding-right: 0px;">
+                <input type="text" nbInput placeholder="Payer Name" class="form-control form-control-sm">
+              </div>
+              <div class="col-md-1">
+                  <button nbButton [nbContextMenu]="items" size="small" status="success" id="action-btn">Action<nb-icon icon="arrow-down"></nb-icon></button>
+              </div>
+              <div class="col-md-1 offset-md-4">
+                <button class="btn btn-primary btn-sm" style="width: 100%; text-align: center;"><nb-icon icon="sync"></nb-icon>Update</button>
+              </div>
+            </div>
+          </nb-tab>
+          <nb-tab tabTitle="Patient">
+            <div class="row">
+              <strong style="margin: auto 0;">Aging AR By</strong>
+              <div class="col-md-2" style="margin: auto 0;">
+                <nb-select size="small" [(selected)]="selectedItem1" style="width: 100%;">
+                  <nb-option value="1">First Billed</nb-option>
+                  <nb-option value="2">Last Biiled</nb-option>
+                  <nb-option value="3">Service</nb-option>
+                </nb-select>
+              </div>
+              <strong style="margin: auto 0;">Group By</strong>
+              <div class="col-md-2" style="margin: auto 0;">
+                <nb-select size="small" [(selected)]="selectedItem2" style="width: 100%;">
+                  <nb-option value="1">30 days</nb-option>
+                  <nb-option value="2">Month</nb-option>
+                  <nb-option value="3">Quarter</nb-option>
+                </nb-select>
+              </div>
+              <strong style="margin: auto 0;">Submission Status</strong>
+              <div class="col-md-2" style="margin: auto 0;">
+                <nb-select size="small" [(selected)]="selectedItem2" style="width: 100%;">
+                  <nb-option value="1">All</nb-option>
+                  <nb-option value="2">Submitted</nb-option>
+                  <nb-option value="3">Not Submitted</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <hr style="width: 100%;">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="row">
+                  <div class="col-md-6" style="padding-left: 0px;">
+                    <input nbInput [nbDatepicker]="frommodel3" class="form-control form-control-sm" placeholder="From">
+                    <nb-datepicker #frommodel3 format="MM/dd/yyyy"></nb-datepicker>
+                  </div>                        
+                  <div class="col-md-6" style="padding-left: 0px;">
+                    <input nbInput [nbDatepicker]="tomodel3" class="form-control form-control-sm" placeholder="To">
+                    <nb-datepicker #tomodel3 format="MM/dd/yyyy"></nb-datepicker>
+                  </div>
+                </div>
+              </div>
+              <strong style="margin: auto 0;">for</strong>
+              <div class="col-md-4">
+                <div class="row">
+                  <div class="col-md-4" style="margin: auto 0; padding-right: 0px;">
+                    <nb-select size="small" [(selected)]="selectedItem2" style="width: 100%;">
+                      <nb-option value="1">All Patients</nb-option>
+                      <nb-option value="2">Self Pay Patients</nb-option>
+                      <nb-option value="3">Insured Patients</nb-option>
+                    </nb-select>
+                  </div>
+                  <div class="col-md-4" style="padding-right: 0px;">
+                    <input type="text" nbInput placeholder="Payer Name" class="form-control form-control-sm">
+                  </div>
+                  <div class="col-md-4" style="padding-right: 0px;">
+                    <input type="text" nbInput placeholder="Phone" class="form-control form-control-sm">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1" style="padding-right: 0px;">
+                <button nbButton [nbContextMenu]="items" size="small" status="success" id="action-btn">Action<nb-icon icon="arrow-down"></nb-icon></button>
+              </div>
+              <div class="col-md-3">
+                <div class="row">
+                  <div class="col-md-4 offset-md-8">
+                    <button class="btn btn-primary btn-sm" style="width: 100%; text-align: center;"><nb-icon icon="sync"></nb-icon>Update</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nb-tab>
+        </nb-tabset>
+      </nb-card>
+    </div>
+    
+    <div class="col-md-12" id="table-box">
+      <nb-card>
+        <nb-card-body>
+          <ng2-smart-table [settings]="settings" [source]="source" style="display: flex;"></ng2-smart-table>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="col-md-12" id="chart-box">
+      <nb-card size="large">
+        <nb-card-body>
+          <chart type="bar" [data]="data" [options]="options" style="height: 100%;"></chart>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>

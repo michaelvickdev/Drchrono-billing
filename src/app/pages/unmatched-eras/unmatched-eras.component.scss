@@ -1,0 +1,33 @@
+@import '../../@theme/styles/themes';
+
+@include nb-install-component() {
+  ::ng-deep nb-card-body nb-select.sel-box {
+    min-width: 150px;
+    margin-left: 20px;
+  }
+  ::ng-deep nb-card nb-card-body ng2-smart-table thead tr th{
+    font-size: .8em;
+    background-color: lightyellow;
+    margin: 0;
+    padding: 0.2em 0.4em;
+  }
+  ::ng-deep nb-card nb-card-body ng2-smart-table tbody tr td{
+      font-size: .8em;
+      background-color: rgb(255, 255, 255);
+  }
+  ::ng-deep .autoinput input {
+    width: 100%;
+    margin: auto 0;
+    line-height: 1.5rem;
+  }
+  .list-card {
+    nb-card-header {
+      border-bottom: none;
+      box-shadow: 0 0 1px 0 rgba($color: #575454, $alpha: 0.5);
+      border-radius: 0px;
+    }
+    nb-card-body {
+      padding: 0;
+    }
+  }
+}

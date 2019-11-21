@@ -1,0 +1,314 @@
+<div class="infinite-cards row">
+  <div class="col-md-12">
+    <nb-card class="own-scroll">
+      <nb-card-header style="font-size: 20px;">Live Claims Feed</nb-card-header>
+      <nb-card-body style="overflow: visible;">
+        <div class="row">
+          <div class="col-md-12 first-box">
+            <div class="row">
+              <div class="col-sm-2">
+                <button class="btn btn-outline-dark btn-all btn-sm" style="background-color: #c5c5c5; margin: auto 0;" (click)="allSelect()">Select All Offices</button>
+                <button class="btn btn-outline-dark btn-none btn-sm" style="background-color: #c5c5c5; border-left: 0px; margin: auto 0;" (click)="allDeselect()">Select None</button>
+              </div>  
+              <div class="col-sm-2" style="padding-left: 0px;">
+                <div class="dropdown">
+                  <a class="btn btn-outline-dark btn-sm dropdown-toggle" data-toggle="dropdown" href="#" style="width: 100%; text-align: left; color: black;">Primary Office <span style="color: blue;"> {{ officeLabel }} </span></a>
+                  <div class="dropdown-menu" id="myDropdown">
+                    <div class="dropdown-item">
+                      <nb-checkbox (checkedChange)="checkAllOffice($event)" [(ngModel)]="alloffice">All Exam Rooms</nb-checkbox>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div *ngFor="let exam of exams">
+                      <nb-checkbox class="dropdown-item" (checkedChange)="checkOffice($event, exam.id)" [(ngModel)]="exam.status">{{ exam.title }}</nb-checkbox>
+                    </div>
+                  </div>
+                </div>
+              </div>               
+            </div>      
+          </div>
+            
+          <div class="col-md-12 second-box">
+            <div class="dropdown" style="float: left; margin-right: 20px;">
+              <a class="btn btn-outline-dark btn-sm dropdown-toggle" data-toggle="dropdown" href="#" style="text-align: left; color: black;">
+                Calim St 
+                <span class="defaultclaim">{{ allcnt }}</span>
+                <span class="successclaim">{{successcnt}}</span>
+                <span class="infoclaim">{{ infocnt }}</span>
+                <span class="dangerclaim">{{dangercnt}}</span>
+                <span style="color: blue;">{{ claimLabel }}</span>
+              </a>
+              <div class="dropdown-menu" id="myDropdownclaim">
+                <div class="dropdown-item">
+                  <nb-checkbox (checkedChange)="checkAllClaim($event)" [(ngModel)]="allclaim"><span class="defaultclaim">-</span>All Statuses</nb-checkbox>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div *ngFor="let claim of claims">
+                  <nb-checkbox class="dropdown-item" (checkedChange)="checkClaim($event, claim.id)" [(ngModel)]="claim.status"><span [class]="claim.type">-</span>{{ claim.title }}</nb-checkbox>
+                </div>
+              </div>
+            </div> 
+            <div class="dropdown" style="float: left; margin-right: 20px;">
+              <a class="btn btn-outline-dark btn-sm dropdown-toggle" data-toggle="dropdown" href="#" style="text-align: left; color: black;">Billing St: <span style="color: blue;"> {{ statusLabel }} </span></a>
+              <div class="dropdown-menu" id="myDropdownstatus">
+                <div class="dropdown-item">
+                  <nb-checkbox (checkedChange)="checkAllStatus($event)" [(ngModel)]="allstatus">All Statuses</nb-checkbox>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div *ngFor="let status of statuses">
+                  <nb-checkbox class="dropdown-item" (checkedChange)="checkStatus($event, status.id)" [(ngModel)]="status.status"><span class="status-badge">-</span>{{ status.title }}</nb-checkbox>
+                </div>
+              </div>
+            </div> 
+            <div class="dropdown" style="float: left; margin-right: 20px;">
+              <a class="btn btn-outline-dark btn-sm dropdown-toggle" data-toggle="dropdown" href="#" style="text-align: left; color: black;">Appt Profiles: <span style="color: blue;"> {{ profileLabel }} </span></a>
+              <div class="dropdown-menu" id="myDropdownprofile">
+                <div class="dropdown-item">
+                  <nb-checkbox (checkedChange)="checkAllProfile($event)" [(ngModel)]="allprofile">All Profiles</nb-checkbox>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div *ngFor="let profile of profiles">
+                  <nb-checkbox class="dropdown-item" (checkedChange)="checkProfile($event, profile.id)" [(ngModel)]="profile.status"><span [class]="profile.id">-</span>{{ profile.title }}</nb-checkbox>
+                </div>
+              </div>
+            </div>                           
+            <button type="button" class="btn btn-primary second-box btn-sm" (click)="countClaim()">Calculate Counts</button>
+            <a href="javascript:;" (click)="open(dialog)"><nb-icon icon="info"></nb-icon>What's this?</a>
+            <nb-checkbox (checkedChange)="toggle($event)" id="help">TFL Warning</nb-checkbox>              
+          </div>
+          <div class="col-md-12 third-box">
+            <div class="row" style="display: flex;">
+              <div class="col-sm-3" style="padding-left: 0px;">
+                <div class="row">
+                  <div class="col-sm-5 offset-sm-1" style="padding: 0px;">
+                    <ng2-input-autocomplete [items]="wikiItems" (inputChangedEvent)="search($event)" (selectEvent)="onSelect($event)" [config]="config"></ng2-input-autocomplete>
+                  </div>
+                  <div class="col-sm-5 offset-sm-1" style="padding: 0px;">
+                    <ng2-input-autocomplete [items]="wikiItems1" (inputChangedEvent)="search1($event)" (selectEvent)="onSelect($event)" [config]="config1"></ng2-input-autocomplete>
+                  </div>      
+                </div>
+              </div>
+              <div class="col-sm-1" style="padding-right: 0px;">
+                <input placeholder="Player" class="form-control form-control-sm" style="width: 100%;">
+              </div>
+              <div class="col-sm-1" style="padding-right: 0px;">
+                <input placeholder="drc claim#" class="form-control form-control-sm">
+              </div>
+              <div class="col-sm-3" style="padding-right: 0px;">
+                <div class="row">
+                  <div class="col-sm-5">
+                    <input [nbDatepicker]="frommodel" class="form-control form-control-sm" [(ngModel)]="fromDate">
+                    <nb-datepicker #frommodel format="MM/dd/yyyy"></nb-datepicker>
+                  </div>
+                  <strong style="line-height: 1.8rem; margin: auto 0;">
+                      —
+                  </strong>
+                  <div class="col-sm-5" style="padding-right: 0px;">
+                    <input [nbDatepicker]="tomodel" class="form-control form-control-sm" [(ngModel)]="toDate">
+                    <nb-datepicker #tomodel format="MM/dd/yyyy"></nb-datepicker>
+                  </div>
+                </div>
+              </div>
+              <strong style="line-height: 2rem;">Clinical Note</strong>
+              <div class="col-sm-2">
+                <nb-select class="second-selbox" size="small" style="width: 100%;">
+                  <nb-option value="1">Locked</nb-option>
+                  <nb-option value="2">Not Locked</nb-option>                  
+                </nb-select>
+              </div>
+            </div>
+          </div>
+
+          <hr style="width: 100%;">
+          
+          <div class="col-md-12 last-box">
+            <div class="row">
+              <div class="col-md-2">
+                <nb-checkbox (checkedChange)="toggle($event)">Open window in new tab</nb-checkbox>
+              </div>
+              <div class="col-md-3 offset-md-7">
+                <button class="btn btn-outline-dark btn-all btn-sm" (click)="allCheck()">Check All</button>
+                <button class="btn btn-outline-dark btn-none btn-sm" (click)="allUncheck()">Clear</button>
+                <button class="btn btn-primary btn-center btn-sm">Update Filter</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-md-12" style="margin-bottom: 20px;">
+    <div class="row">
+      <div class="col-md-8">
+        <button [nbContextMenu]="items1" class="btn btn-outline-dark tool-box btn-down btn-sm" nbContextMenuTag="my-context-menu">Batch Status Change<nb-icon icon="arrow-down"></nb-icon></button>
+        <a href="javascript:;" (click)="showDetail(confirmitem)" id="showconfirm"></a>
+        <button class="btn btn-outline-dark tool-box btn-export btn-sm"><nb-icon icon="printer"></nb-icon>Export to File</button>
+        <button [nbContextMenu]="items" class="btn btn-outline-dark tool-box btn-down btn-sm" nbContextMenuTag="my-context-menu"><nb-icon icon="arrow-down"></nb-icon></button>
+        <a href="javascript:;" (click)="showDetail(item)" id="showdetail"></a>
+        <button class="btn btn-outline-dark tool-box btn-custom btn-sm"><nb-icon icon="save"></nb-icon>Custom Export</button>
+        <nb-select multiple placeholder="Display" filled status="success" style="min-width: 150px; margin-right: 10px;" size="small" id="displayitem">
+          <nb-option value="1">Show All</nb-option>
+          <hr style="width: 100%;">
+          <nb-option value="2">Info</nb-option>
+          <nb-option value="3">Claim ID</nb-option>
+          <nb-option value="4">Billed</nb-option>
+        </nb-select>
+        <button class="btn btn-success tool-box btn-schedule btn-sm" (click)="open(dialog1)"><nb-icon icon="plus-square"></nb-icon>Scheduled</button>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+
+  <div class="col-md-12 table-box" style="display: flex;">
+    <nb-card>
+      <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="source" style="display: flex;"></ng2-smart-table>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card size="tiny">
+    <nb-card-body>
+      <div class="row">
+        <div class="col align-self-center">
+          <p>Calculating the counts will give you the totals of claim statuses, billing statuses, and </p>
+          <p>appointment statuses across all appointments in the givendate range and appear </p>
+          <p>in the colored circles next to each option in those filters.</p>
+        </div>
+        <hr style="width: 100%;">
+      </div>
+      <div class="row">
+        <div class="col-md-2 offset-md-10">
+          <button nbButton (click)="ref.close()" size="small" status="default">Close</button>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
+<ng-template #dialog1 let-data let-ref="dialogRef">
+  <nb-card size="small" id="firstdialog" style="min-width: 600px;">
+    <nb-card-header>
+      <h3 style="color: #309549;">Schedule Service</h3>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row" style="margin-bottom: 10px;">
+            <div class="col-sm-4" style="text-align: right;">Patient</div>
+            <div class="col-sm-4">
+              <ng2-input-autocomplete [items]="wikiItems2" (inputChangedEvent)="search2($event)" (selectEvent)="onSelect($event)" [config]="config2"></ng2-input-autocomplete>
+            </div>
+            <div class="col-sm-4"></div>
+          </div>
+          <div class="row" style="margin-bottom: 10px;">
+            <div class="col-sm-4" style="text-align: right;">Office</div>
+            <div class="col-sm-4">
+              <nb-select class="second-selbox" size="small" style="width: 100%" [(selected)]="selectedModalItem1">              
+                <nb-option value="1">Primary Office</nb-option>
+              </nb-select>
+            </div>
+            <div class="col-sm-4"></div>
+          </div>
+          <div class="row" style="margin-bottom: 10px;">
+            <div class="col-sm-4" style="text-align: right;">Examroom</div>
+            <div class="col-sm-4">
+              <nb-select class="second-selbox" size="small" style="width: 100%" [(selected)]="selectedModalItem1">              
+                <nb-option value="1">Exam 1</nb-option>
+                <nb-option value="2">Exam 2</nb-option>
+                <nb-option value="3">Exam 3</nb-option>
+                <nb-option value="4">Exam 4</nb-option>
+                <nb-option value="4">Inactive Exam</nb-option>
+              </nb-select>
+            </div>
+            <div class="col-sm-4"></div>
+          </div>
+          <div class="row" style="margin-bottom: 10px;">
+            <div class="col-sm-4" style="text-align: right;">Schedule Time</div>
+            <div class="col-sm-4">
+                <input [nbDatepicker]="modalmodel" class="form-control form-control-sm" [(ngModel)]="modalDate">
+                <nb-datepicker #modalmodel format="MM/dd/yyyy hh:mm"></nb-datepicker>
+            </div>
+            <div class="col-sm-4"></div>
+          </div>
+        </div>
+        <hr style="width: 100%;">
+      </div>
+      <div class="row">
+        <div class="col-md-2 offset-md-10">
+          <button nbButton (click)="ref.close()" size="small" status="default">Close</button>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
+<ng-template #item let-data let-ref="dialogRef">
+  <nb-card size="tiny" id="firstdialog" style="min-width: 600px;">
+    <nb-card-header>
+      <h3 style="color: #309549;">{{ data }}</h3>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-sm-5" style="text-align: right;">And change billing status to</div>
+            <div class="col-sm-5">
+              <nb-select class="second-selbox" size="small" style="width: 100%" [(selected)]="selectedPrintItem">              
+                <nb-option value="1">--Not Changed--</nb-option>
+                <nb-option value="2">Paid In Full</nb-option>
+                <nb-option value="3">Balance Due</nb-option>
+                <nb-option value="4">Settled</nb-option>
+                <nb-option value="5">Internal Review</nb-option>
+              </nb-select>
+            </div>
+          </div>
+        </div>
+        <hr style="width: 100%;">
+      </div>
+      <div class="row">
+        <div class="col-md-2 offset-md-10">
+          <button nbButton (click)="ref.close()" size="small" status="primary">Print</button>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-template>  
+
+<ng-template #confirmitem let-data let-ref="dialogRef">
+  <div class="dialogbox">
+    <nb-card size="medium" id="thirddialog" style="min-width: 600px;">
+      <nb-card-header>
+        <h3 style="color: #309549;">{{ data }}</h3>
+      </nb-card-header>
+      <nb-card-body>
+        <p>Please confirm barch status change of 0 claims to Paid In Full</p>
+        <div class="row" style="margin-bottom: 20px;">
+          <div class="col-md-12">
+            <ng2-smart-table [settings]="modalsettings" [source]="modalsource" style="display: flex; width: 100%;" id="dialogtable"></ng2-smart-table>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 20px;">
+          <div class="col-md-12">
+            <nb-alert status="danger">Warning: this action cannot be undone.</nb-alert>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 20px;">
+          <div class="col-md-12">
+            <input placeholder="Enter CONFIRM to continue" class="form-control form-control-sm" style="width: 100%;">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <button nbButton (click)="ref.close()" size="small" status="primary">Confirm</button>
+          </div>
+          <div class="col-md-2 offset-md-8">
+            <button nbButton (click)="ref.close()" size="small" status="default">Cancel</button>
+          </div>
+        </div>
+      </nb-card-body>
+      <nb-card-footer></nb-card-footer>
+    </nb-card>
+  </div>
+</ng-template> 

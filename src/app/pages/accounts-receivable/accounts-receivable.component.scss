@@ -1,0 +1,30 @@
+nb-tabset {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+:host ::ng-deep ngx-tab1, :host ::ng-deep ngx-tab2 {
+    display: block;
+    padding: 1rem 2rem;
+}
+
+:host ::ng-deep nb-card nb-card-body ng2-smart-table thead tr th{
+    font-size: .8em;
+    background-color: lightyellow;
+}
+
+:host ::ng-deep nb-card nb-tabset ul li.tab.disabled a span {
+    font-size: 20px;
+    // font-weight: bold;
+    color: #777;
+    font-family: Helvetica, Arial, sans-serif;
+    text-transform: capitalize;
+}
+:host ::ng-deep button#action-btn {
+    background-color: #28a745;
+}
+:host ::ng-deep nb-card nb-tabset ul li.tab a span {
+    text-transform: capitalize;
+    font-family: Helvetica, Arial, sans-serif;
+}

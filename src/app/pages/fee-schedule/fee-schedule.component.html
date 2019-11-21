@@ -1,0 +1,277 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card style="overflow: visible;">
+      <nb-tabset (changeTab)="selectTab($event)" style="overflow: visible;" id="mytab">
+        <nb-tab tabTitle="Insurance Payer Fee Schedule" disabled class="title-label">
+        </nb-tab>
+        <nb-tab tabTitle="CPT & HCPCS" active style="overflow: visible;">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="row">
+                <div class="col-sm-11 offset-sm-1" style="padding: 0px;">
+                  <ng2-input-autocomplete [items]="wikiItems" (inputChangedEvent)="search($event)" (selectEvent)="onSelect($event)" [config]="config"></ng2-input-autocomplete>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div class="row">
+                <div class="col-sm-11 offset-sm-1" style="padding: 0px;">
+                  <ng2-input-autocomplete [items]="wikiItems1" (inputChangedEvent)="search1($event)" (selectEvent)="onSelect($event)" [config]="config1"></ng2-input-autocomplete>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="row">
+                <div class="col-sm-11 offset-sm-1" style="padding: 0px;">
+                  <ng2-input-autocomplete [items]="wikiItems2" (inputChangedEvent)="search2($event)" (selectEvent)="onSelect($event)" [config]="config2"></ng2-input-autocomplete>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <input type="text" placeholder="Picklist Category" class="form-control form-control-sm">
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="btn btn-primary btn-sm"><nb-icon icon="sync" style="margin-right: 5px;"></nb-icon>Update</button>
+            </div>
+          </div>
+        </nb-tab>
+        <nb-tab tabTitle="ICD-9" style="overflow: visible;">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="row">
+                <div class="col-sm-11 offset-sm-1" style="padding: 0px;">
+                  <ng2-input-autocomplete [items]="wikiItems" (inputChangedEvent)="search($event)" (selectEvent)="onSelect($event)" [config]="config9"></ng2-input-autocomplete>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <input type="text" placeholder="Picklist Category" class="form-control form-control-sm">
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="btn btn-primary btn-sm"><nb-icon icon="sync" style="margin-right: 5px;"></nb-icon>Update</button>
+            </div>
+          </div>
+        </nb-tab>
+        <nb-tab tabTitle="ICD-10" style="overflow: visible;">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="row">
+                <div class="col-sm-11 offset-sm-1" style="padding: 0px;">
+                  <ng2-input-autocomplete [items]="wikiItems" (inputChangedEvent)="search($event)" (selectEvent)="onSelect($event)" [config]="config10"></ng2-input-autocomplete>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <input type="text" placeholder="Picklist Category" class="form-control form-control-sm">
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="btn btn-primary btn-sm"><nb-icon icon="sync" style="margin-right: 5px;"></nb-icon>Update</button>
+            </div>
+          </div>
+        </nb-tab>
+      </nb-tabset>
+    </nb-card>
+  </div>
+  <div class="col-md-12" style="margin-bottom: 20px;">
+    <button class="btn btn-outline-dark btn-sm" style="margin-right: 10px;"><nb-icon icon="printer"></nb-icon>Export to File</button>
+    <button class="btn btn-success btn-sm" (click)="open(dialog)"><nb-icon icon="plus"></nb-icon>Add New</button>
+  </div>
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="source" style="display: flex;"></ng2-smart-table>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <div class="dialogbox">
+    <nb-card size="large" id="thirddialog" style="min-width: 600px;">
+      <nb-card-header>
+        <h3 style="color: #309549;">Fee Schedule</h3>
+      </nb-card-header>
+      <nb-card-body style="height: 100%;">
+        <div class="row" style="margin-bottom: 10px;" id="item1">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-4" style="text-align: right;">Code type</div>
+              <div class="col-sm-3">
+                <nb-select size="small" style="width: 100%" [(ngModel)]="selectedCodeItem" (selectedChange)="showControl()">              
+                  <nb-option value="1">CPT</nb-option>
+                  <nb-option value="2">HCPCS</nb-option>
+                  <nb-option value="3">Custom</nb-option>
+                  <nb-option value="4">ICD-9</nb-option>
+                  <nb-option value="5">ICD-10</nb-option>
+                </nb-select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;" id="item2">
+          <div class="col-sm-4" style="text-align: right;">Code</div>
+          <div class="col-sm-4">
+            <div class="row">
+              <div class="col-sm-11 offset-sm-1" style="padding: 0px;">
+                <ng2-input-autocomplete [items]="codeItems" (inputChangedEvent)="codesearch($event)" (selectEvent)="onSelect($event)" [config]="codeconfig"></ng2-input-autocomplete>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4"></div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;" id="item3">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-4" style="text-align: right;">Base price</div>
+              <div class="col-sm-1" style="text-align: center; padding-right: 0px; border-right: 0px;">
+                <span class="form-control form-control-sm" style="width: 100%; background-color: #eeeeee; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-right: 0px;">$</span>
+              </div>
+              <div class="col-sm-2" style="padding-left: 0px;">
+                <input placeholder="0.00" class="form-control form-control-sm" style="width: 100%; border-top-left-radius: 0px; border-bottom-left-radius: 0px; text-align: right;">
+              </div>
+            </div>            
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;" id="item4">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-4" style="text-align: right;">Expected Reimbursement</div>
+              <div class="col-sm-1" style="text-align: center; padding-right: 0px; border-right: 0px;">
+                <span class="form-control form-control-sm" style="width: 100%; background-color: #eeeeee; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-right: 0px;">$</span>
+              </div>
+              <div class="col-sm-2" style="padding-left: 0px;">
+                <input placeholder="0.00" class="form-control form-control-sm" style="width: 100%; border-top-left-radius: 0px; border-bottom-left-radius: 0px; text-align: right;">
+              </div>
+              <div class="col-sm-4" style="font-size: 12px; padding-left: 0px; padding-right: 0px;">Typical allowed amount for payer.<br>Not used if blank</div>
+            </div>            
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;" id="item5">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-4" style="text-align: right;">CPT/HCPCS Modifier</div>
+              <div class="col-sm-1" style="padding-right: 0px;">
+                <input class="form-control form-control-sm" >
+              </div>
+              <div class="col-sm-1" style="padding-right: 0px;">
+                <input class="form-control form-control-sm" >
+              </div>
+              <div class="col-sm-1" style="padding-right: 0px;">
+                <input class="form-control form-control-sm">
+              </div>
+              <div class="col-sm-1" style="padding-right: 0px;">
+                <input class="form-control form-control-sm">
+              </div>
+            </div>            
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;" id="item6">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-4" style="text-align: right;">Office</div>
+              <div class="col-sm-5">
+                <nb-select size="small" style="width: 100%" [(selected)]="selectedOfficeItem">              
+                  <nb-option value="1">Primary Office</nb-option>
+                </nb-select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;" id="item7">
+          <div class="col-sm-4" style="text-align: right;">NDC Code</div>
+          <div class="col-sm-4">
+            <div class="row">
+              <div class="col-sm-11 offset-sm-1" style="padding: 0px;">
+                <ng2-input-autocomplete [items]="codeItems1" (inputChangedEvent)="codesearch1($event)" (selectEvent)="onSelect($event)" [config]="codeconfig1"></ng2-input-autocomplete>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4"></div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;" id="item8">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-4" style="text-align: right;">NDC Quantity</div>
+              <div class="col-sm-2">
+                <input class="form-control form-control-sm" style="width: 100%; text-align: right;" placeholder="1.000">
+              </div>
+            </div>            
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;" id="item9">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-4" style="text-align: right;">NDC Units</div>
+              <div class="col-sm-3">
+                <nb-select size="small" style="width: 100%" [(selected)]="selectedUnitItem">              
+                  <nb-option value="1">———————————</nb-option>
+                  <nb-option value="1">F2 (International Unit)</nb-option>
+                  <nb-option value="1">GR (Gram)</nb-option>
+                  <nb-option value="1">ME (Milligram)</nb-option>
+                  <nb-option value="1">ML (Milliliter)</nb-option>
+                  <nb-option value="1">UN (Unit)</nb-option>
+                </nb-select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;" id="item10">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-4" style="text-align: right;">Payer id</div>
+              <div class="col-sm-5">
+                <input class="form-control form-control-sm" style="width: 100%;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8 offset-sm-4" style="font-size: 12px;">Use 'Cash' for self pay and cash patients</div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;" id="item11">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-4" style="text-align: right;">Plan Name</div>
+              <div class="col-sm-5">
+                <input class="form-control form-control-sm" style="width: 100%;">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;" id="item12">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-4" style="text-align: right;">Custom description</div>
+              <div class="col-sm-5">
+                <input class="form-control form-control-sm" style="width: 100%;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-5 offset-sm-4" style="font-size: 12px;">Custom description of code</div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;" id="item13">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-4" style="text-align: right;">Picklist category</div>
+              <div class="col-sm-5">
+                <input class="form-control form-control-sm" style="width: 100%;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8 offset-sm-4" style="font-size: 12px;">Optional: Category to organize the code info.</div>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>  
+        <div class="row">
+          <div class="col-md-2 offset-md-10">
+            <button nbButton (click)="ref.close()" size="small" status="primary">Create</button>
+          </div>
+        </div>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+</ng-template> 

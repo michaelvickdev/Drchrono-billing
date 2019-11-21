@@ -1,0 +1,81 @@
+nb-tabset {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+:host ::ng-deep ngx-tab1, :host ::ng-deep ngx-tab2 {
+    display: block;
+    padding: 1rem 2rem;
+}
+
+:host ::ng-deep nb-card nb-tabset ul li.tab.disabled a span {
+    font-size: 20px;
+    text-transform: capitalize;
+    color: #777;
+    font-family: Helvetica, Arial, sans-serif;
+}
+:host ::ng-deep nb-card nb-tabset ul li.tab a span {
+    text-transform: capitalize;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+:host ::ng-deep nb-context-menu nb-menu ul {
+    text-align: left;
+    background-color: black;
+}
+:host ::ng-deep button#actionbtn {
+    background-color: #28a745;
+}
+:host ::ng-deep .autoinput input {
+    width: 100%;
+    margin: auto 0;
+    line-height: 1.5rem;
+  }
+:host ::ng-deep .autoinputone input {
+    width: 100%;
+    line-height: 1.5rem;
+    margin: auto 0;
+}
+
+:host ::ng-deep .table-box nb-card nb-card-body ng2-smart-table table tr th{
+    background-color: lightyellow;
+    font-size: .75em;
+    margin: auto 0;
+    text-align: center !important;
+    padding: auto 0em !important;
+  }
+:host ::ng-deep .table-box nb-card nb-card-body ng2-smart-table table tr td{
+    font-size: .75em;
+    text-align: center;
+    padding: 0px;
+}
+:host ::ng-deep .table-box nb-card nb-card-body ng2-smart-table table tr td input {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-clip: padding-box;
+}
+
+:host ::ng-deep .video-content {
+    position: relative;
+    text-align: center;
+    display: flex;
+    padding-top: 10px;
+}
+:host ::ng-deep .video-button {
+    background-color: #a0c439;
+    border-color: #a0c439;
+    width: 35px;
+    height: 35px;
+    &:hover { 
+        background-color: #a0c439;
+        border-color: #a0c439;
+        color:#fff;
+        width: 100px;
+    }
+}
+:host ::ng-deep .iconstyle {
+    font-size: 15px;
+    color: white;
+}

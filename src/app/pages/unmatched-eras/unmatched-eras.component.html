@@ -1,0 +1,81 @@
+<div class="infinite-cards row">
+    <div class="col-md-12">
+      <nb-card class="own-scroll">
+        <nb-card-header style="font-size: 20px;">Unmatched ERAs</nb-card-header>
+        <nb-card-body style="overflow: visible;">
+          <div class="row">  
+            <div class="col-md-12 third-box">
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="row">
+                        <div class="col-md-5 offset-md-1" style="padding-right: 0px; padding-left: 0px;">
+                          <ng2-input-autocomplete [items]="wikiItems" (inputChangedEvent)="search($event)" (selectEvent)="onSelect($event)" [config]="config"></ng2-input-autocomplete>                          
+                        </div>
+                        <div class="col-md-6" style="padding-right: 0px; display: flex;">
+                          <nb-select [(selected)]="selectedStatus" size="small" style="width: 100%; margin: auto 0;">
+                            <nb-option value="1">Received</nb-option>
+                            <nb-option value="2">Check Date</nb-option>
+                            <nb-option value="3">DoS</nb-option>
+                          </nb-select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="row">
+                        <div class="col-md-6" style="padding-right: 0px;">
+                          <input nbInput [nbDatepicker]="frommodel" class="form-control form-control-sm" placeholder="From">
+                          <nb-datepicker #frommodel format="MM/dd/yyyy"></nb-datepicker>
+                        </div>                        
+                        <div class="col-md-6" style="padding-right: 0px;">
+                          <input nbInput [nbDatepicker]="tomodel" class="form-control form-control-sm" placeholder="To" [(ngModel)]="toDate">
+                          <nb-datepicker #tomodel format="MM/dd/yyyy"></nb-datepicker>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-1" style="padding-right: 0px; width: 100%;">
+                      <input type="text" nbInput placeholder="Patient" class="form-control form-control-sm" style="width: 100%;">
+                    </div>
+                    <div class="col-md-3">
+                      <div class="row">
+                        <div class="col-md-6" style="padding-right: 0px;">
+                          <input type="text" nbInput placeholder="Insurance" class="form-control form-control-sm" style="width: 100%;">
+                        </div>
+                        <div class="col-md-6" style="padding-right: 0px;">
+                          <nb-select [(selected)]="selectedItem" size="small" style="width: 100%;">
+                            <nb-option value="1">—Status—</nb-option>
+                            <nb-option value="2">New</nb-option>
+                            <nb-option value="3">In progress</nb-option>
+                            <nb-option value="4">Compare</nb-option>
+                          </nb-select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2" style="display: flex;">
+                  <button class="btn btn-outline-dark btn-sm" style="margin-right: 5px; background-color: #c5c5c5;" (click)="reset()">Reset</button>
+                  <button class="btn btn-primary btn-sm"><nb-icon icon="sync" style="margin-right: 5px;"></nb-icon>Update</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  
+    <div class="col-md-12" style="margin-bottom: 20px;">
+      <button class="btn btn-outline-dark tool-box btn-export btn-sm"><nb-icon icon="printer" style="margin-right: 5px;"></nb-icon>Export to File</button>
+    </div>
+  
+    <div class="col-md-12">
+      <nb-card>
+        <nb-card-body>
+          <ng2-smart-table [settings]="settings" [source]="source" style="display: flex;"></ng2-smart-table>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    
+  </div>
+    

@@ -1,0 +1,70 @@
+nb-tabset {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+:host ::ng-deep ngx-tab1, :host ::ng-deep ngx-tab2 {
+    display: block;
+    padding: 1rem 2rem;
+}
+
+:host ::ng-deep nb-card nb-card-body ng2-smart-table thead tr th{
+    font-size: .8em;
+    background-color: lightyellow;
+}
+
+:host ::ng-deep nb-card nb-tabset ul li.tab.disabled a span {
+    font-size: 20px;
+    text-transform: capitalize;
+    color: #777;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+:host ::ng-deep .autoinput input {
+    width: 100%;
+    margin: auto 0;
+    line-height: 1.5rem;
+}
+:host ::ng-deep .autoinputone input {
+    width: 100%;
+    margin: auto 0;
+    line-height: 1.5rem;
+}
+:host ::ng-deep .autoinputtwo input {
+    width: 100%;
+    margin: auto 0;
+    line-height: 1.5rem;
+}
+:host ::ng-deep .autoinputcode input {
+    width: 100%;
+    margin: auto 0;
+    line-height: 1.5rem;
+}
+:host ::ng-deep .autoinputndccode input {
+    width: 100%;
+    margin: auto 0;
+    line-height: 1.5rem;
+}
+:host ::ng-deep .video-content {
+    position: relative;
+    text-align: center;
+    display: flex;
+    padding-top: 10px;
+}
+:host ::ng-deep .video-button {
+    background-color:red;
+    border-color:red;
+    width: 35px;
+    height: 35px;
+    &:hover { 
+        background-color: red;
+        border-color: red;
+        color:#fff;
+        width: 100px;
+    }
+}
+:host ::ng-deep .iconstyle {
+    font-size: 15px;
+    color: white;
+}
