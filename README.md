@@ -1,5 +1,15 @@
 # Drchrono-billing
 
+### Getting Started:
+
+- Fork and clone this repository
+- Run npm install to install dependencies
+- Run ng serve to run project
+- Run ng build to build project
+
+### Demo url:
+https://drchronobilling-c1fe8.firebaseapp.com
+
 ### What's included:
 
 - Angular 8+ & Typescript
