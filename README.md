@@ -8,7 +8,7 @@
 - Run ng build to build project
 
 ### Demo url:
-https://drchronobilling-c1fe8.firebaseapp.com
+https://drchronobilltool.firebaseapp.com
 
 ### What's included:
 
